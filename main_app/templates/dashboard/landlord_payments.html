@@ -1,0 +1,40 @@
+{% extends 'dashboard/d_layouts/base.html' %}
+{% block content %}
+<div class="container">
+  <h3>All Tenant Payments</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tenant</th>
+        <th>Amount</th>
+        <th>Method</th>
+        <th>Code</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in payments %}
+      <tr>
+        <td>{{ p.tenant.user.get_full_name }}</td>
+        <td>Ksh {{ p.amount }}</td>
+        <td>{{ p.method }}</td>
+        <td>{{ p.transaction_code }}</td>
+        <td>{{ p.payment_date }}</td>
+        <td>
+          {% if p.is_verified %}
+            ✅ Verified
+          {% else %}
+            ⏳ Pending
+            <form method="post" action="{% url 'verify_payment' p.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-success">Verify</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

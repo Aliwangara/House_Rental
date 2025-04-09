@@ -1,0 +1,47 @@
+{% extends "dashboard/d_layouts/base.html" %}
+{% block content %}
+<main class="app-main">
+  <div class="container-fluid">
+    <div class="row mb-3">
+      <div class="col">
+        <h3>Welcome {{ tenant.user.first_name|default:tenant.user.username }} 👋</h3>
+        <p class="lead">Here’s a summary of your rental account.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <div class="card">
+          <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Your Property</h4>
+          </div>
+          <div class="card-body">
+            <p><strong>Name:</strong> {{ property.name }}</p>
+            <p><strong>Address:</strong> {{ property.address }}</p>
+            <p><strong>Monthly Rent:</strong> Ksh {{ property.rent_amount }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Your Payments</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              {% for payment in payments %}
+              <li class="list-group-item">
+                Ksh {{ payment.amount }} - {{ payment.payment_date }}
+              </li>
+              {% empty %}
+              <li class="list-group-item">No payments found.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

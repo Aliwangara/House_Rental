@@ -1,0 +1,12 @@
+{% extends 'home/layouts/master.html' %}
+{% block body %}
+<div class="container my-5">
+  <h2>Submit Maintenance Request</h2>
+
+  <form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

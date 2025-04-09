@@ -1,0 +1,26 @@
+{% extends 'home/layouts/master.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Placeholder image or use property.image.url if image is in model -->
+      <img src="{{ property.image.url }}" class="img-fluid rounded" alt="Property Image">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ property.name }}</h2>
+      <p><strong>Address:</strong> {{ property.address }}</p>
+      <p><strong>Rent:</strong> Ksh {{ property.rent_amount }}</p>
+      <p><strong>Status:</strong> {% if property.is_occupied %}Occupied{% else %}Available{% endif %}</p>
+
+      {% if request.user.is_authenticated and request.user.profile.role == 'tenant' %}
+        <a href="{% url 'submit_payment' %}" class="btn btn-success mt-3">Pay Now</a>
+      {% else %}
+        <p class="text-muted mt-3">Login as a tenant to make payments.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

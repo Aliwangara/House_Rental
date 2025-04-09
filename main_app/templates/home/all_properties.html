@@ -1,0 +1,31 @@
+{% extends "home/layouts/master.html" %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h2>All Available Properties</h2>
+    <p>Find a space that fits your needs and budget.</p>
+  </div>
+
+  <div class="row">
+    {% for property in properties %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <a href="{% url 'property_detail' property.pk %}" class="unit-9">
+          <div class="image" style="background-image: url('{{ property.image.url }}');"></div>
+          <div class="unit-9-content">
+            <h2>{{ property.name }}</h2>
+            <span>Ksh {{ property.rent_amount }}/month</span>
+            <p>{{ property.address|truncatechars:60 }}</p>
+          </div>
+        </a>
+      </div>
+    {% empty %}
+      <div class="col-12 text-center">
+        <p>No properties available at the moment.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

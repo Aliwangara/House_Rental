@@ -1,0 +1,45 @@
+{% extends "dashboard/d_layouts/base.html" %}
+{% block content %}
+<main class="app-main">
+  <div class="container-fluid">
+    <div class="row mb-3">
+      <div class="col">
+        <h3>Welcome Landlord 👋</h3>
+        <p class="lead">Manage your properties, tenants, and payments all in one place.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <div class="small-box text-bg-primary">
+          <div class="inner">
+            <h3>{{ properties.count }}</h3>
+            <p>Total Properties</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <div class="small-box text-bg-success">
+          <div class="inner">
+            <h3>{{ tenants.count }}</h3>
+            <p>Tenants</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <div class="small-box text-bg-warning">
+          <div class="inner">
+            <h3>{{ payments.count }}</h3>
+            <p>Payments Received</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optionally add recent tenants or recent payments table -->
+
+  </div>
+</main>
+{% endblock %}
