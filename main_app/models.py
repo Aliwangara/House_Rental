@@ -13,7 +13,7 @@ class Profile(models.Model):
 
 
 class Property(models.Model):
-    image = models.ImageField(upload_to='property_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='property_images/')
     name = models.CharField(max_length=100)
     address = models.TextField()
     rent_amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -29,7 +29,7 @@ class Tenant(models.Model):
     property = models.ForeignKey(Property, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.user.get_full_name()
+        return str(self.user)
 
 class Payment(models.Model):
     tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE)

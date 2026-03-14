@@ -42,7 +42,8 @@
     {% for property in properties %}
       <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:"100" }}">
         <a href="{% url 'property_detail' property.pk %}" class="unit-9">
-          <div class="image" style="background-image: url('{{ property.image.url }}');"></div>
+          <div class="image" style="background-image: url('{% if property.image %}{{ property.image.url }}{% else %}/static/img/default.jpg{% endif %}');"></div>
+
           <div class="unit-9-content">
             <h2>{{ property.name }}</h2>
             <span>Ksh {{ property.rent_amount }}/month</span>

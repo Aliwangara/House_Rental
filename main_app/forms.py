@@ -23,7 +23,7 @@ class CustomSignupForm(SignupForm):
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ['name', 'address', 'rent_amount', 'is_occupied']
+        fields = ['image','name', 'address', 'rent_amount', 'is_occupied']
         widgets = {
             'address': forms.Textarea(attrs={'rows': 3}),
         }

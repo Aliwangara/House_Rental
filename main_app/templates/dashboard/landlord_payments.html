@@ -16,7 +16,7 @@
     <tbody>
       {% for p in payments %}
       <tr>
-        <td>{{ p.tenant.user.get_full_name }}</td>
+        <td>{{ p.tenant.user.get_full_name|default:p.tenant.user.username }}</td>
         <td>Ksh {{ p.amount }}</td>
         <td>{{ p.method }}</td>
         <td>{{ p.transaction_code }}</td>

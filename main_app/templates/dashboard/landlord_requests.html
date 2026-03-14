@@ -15,7 +15,7 @@
     <tbody>
       {% for req in requests %}
       <tr>
-        <td>{{ req.tenant.user.get_full_name }}</td>
+        <td>{{ req.tenant.user.get_full_name|default:req.tenant.user.username }}</td>
         <td>{{ req.issue_type }}</td>
         <td>{{ req.urgency }}</td>
         <td>{{ req.status }}</td>

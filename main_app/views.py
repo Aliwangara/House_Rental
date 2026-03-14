@@ -79,7 +79,7 @@ def property_list(request):
 @login_required
 def add_property(request):
     if request.method == 'POST':
-        form = PropertyForm(request.POST)
+        form = PropertyForm(request.POST,request.FILES)
         if form.is_valid():
             property = form.save(commit=False)
             property.save()
@@ -91,7 +91,7 @@ def add_property(request):
 @login_required
 def edit_property(request, pk):
     property = get_object_or_404(Property, pk=pk)
-    form = PropertyForm(request.POST or None, instance=property)
+    form = PropertyForm(request.POST or None,request.FILES, instance=property)
     if form.is_valid():
         form.save()
         return redirect('property_list')
